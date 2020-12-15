@@ -1,0 +1,172 @@
+<mvc:View
+	controllerName="be.ap.project.Shipments.controller.Detail"
+	xmlns:m="sap.m"
+    xmlns="sap.uxap"
+    xmlns:blockcolor="sap.uxap"
+	xmlns:semantic="sap.f.semantic"
+	xmlns:mvc="sap.ui.core.mvc"
+    xmlns:form="sap.ui.layout.form">
+
+
+
+	<ObjectPageLayout id="ObjectPageLayout">
+		<headerTitle>
+        <ObjectPageDynamicHeaderTitle>
+                <navigationActions>
+                    <m:OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press=".toggleFullScreen" id="enterFullScreenBtn" tooltip="Enter Full Screen Mode" visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}"/>
+                    <m:OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen" press=".toggleFullScreen" id="exitFullScreenBtn" tooltip="Exit Full Screen Mode" visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}"/>
+                    <m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press=".onCloseDetailPress"  tooltip="Close column" visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
+                </navigationActions>
+                
+                <expandedHeading>
+                    <m:Title text="{IvTknum}"/>
+                </expandedHeading>
+            </ObjectPageDynamicHeaderTitle>   
+		</headerTitle>
+
+		<sections>
+			<ObjectPageSection titleUppercase="false" title="General Information">
+				<subSections>
+					<ObjectPageSubSection title="General Information" titleUppercase="false">
+                        <blocks>
+                            <form:SimpleForm
+                                    maxContainerCols="2"
+                                    editable="false"
+                                    layout="ResponsiveGridLayout"
+                                    labelSpanL="12"
+                                    labelSpanM="12"
+                                    emptySpanL="0"
+                                    emptySpanM="0"
+                                    columnsL="1"
+                                    columnsM="1">
+                                    <form:content>
+                                        <m:Label text="Shipment number"/>
+                                        <m:Text text="{IvTknum}"/>
+                                        <m:Label text="Transporter"/>
+                                        <m:Text text="{IsHeader/Tdlnr}"/>
+                                        <m:Label text="Container ID"/>
+                                        <m:Text text="{IsHeader/Signi}"/>
+                                    </form:content>
+                                </form:SimpleForm>
+
+                        </blocks>
+                    </ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false" title="Deliveries">
+				<subSections>
+					<ObjectPageSubSection title="Deliveries" titleUppercase="false">
+                        <blocks>
+                            <m:Table items="{DeliveryItemSet01}">
+								<m:columns>
+									<m:Column />
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem type="Navigation" press="handleItemPress">
+										<m:cells>
+											<m:ObjectIdentifier text="Delivery: {Vbeln}" />
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+                        </blocks>
+                    </ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+
+
+
+
+
+<!--
+	<semantic:SemanticPage
+		id="detailPage"
+		busy="{detailView>/busy}"
+		busyIndicatorDelay="{detailView>/delay}">
+		<semantic:titleHeading>
+			<Title
+				text="{IvTknum}"
+				level="H2"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<ObjectAttribute title="{i18n>priceTitle}"/>
+
+		</semantic:headerContent>
+        
+		<semantic:content>
+			<Table
+				id="lineItemsList"
+				width="auto"
+				items="{Unknown}"
+				updateFinished=".onListUpdateFinished"
+				noDataText="{i18n>detailLineItemTableNoDataText}"
+				busyIndicatorDelay="{detailView>/lineItemTableDelay}">
+				<headerToolbar>
+					<Toolbar>
+						<Title
+							id="lineItemsTitle"
+							text="{detailView>/lineItemListTitle}"
+							titleStyle="H3"
+							level="H3"/>
+					</Toolbar>
+				</headerToolbar>
+ 
+				<columns>
+					<Column>
+						<Text text="{i18n>detailLineItemTableIDColumn}"/>
+					</Column>
+					<Column
+						minScreenWidth="Tablet"
+						demandPopin="true"
+						hAlign="End">
+						<Text text="{i18n>detailLineItemTableUnitNumberColumn}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier
+								title="{Unknown}"
+								text="{Unknown}"/>
+							<ObjectNumber
+								number="{
+									path: 'Unknown',
+									formatter: '.formatter.currencyValue'
+								}"
+								unit="{Unknown}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</semantic:content>
+		Semantic ShareMenu Buttons
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction
+				id="shareEmail"
+				press=".onSendEmailPress"/>
+		</semantic:sendEmailAction>
+
+		<semantic:closeAction>
+			<semantic:CloseAction
+					id="closeColumn"
+					press=".onCloseDetailPress"/>
+		</semantic:closeAction>
+
+		<semantic:fullScreenAction>
+			<semantic:FullScreenAction
+					id="enterFullScreen"
+					visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}"
+					press=".toggleFullScreen"/>
+		</semantic:fullScreenAction>
+		<semantic:exitFullScreenAction>
+			<semantic:ExitFullScreenAction
+					id="exitFullScreen"
+					visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}"
+					press=".toggleFullScreen"/>
+		</semantic:exitFullScreenAction>
+	</semantic:SemanticPage>
+-->
+
+</mvc:View> 
