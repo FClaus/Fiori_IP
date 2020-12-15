@@ -156,16 +156,8 @@ sap.ui.define([
 		 * @public
 		 */
         onOpenViewSettings: function (oEvent) {
-
-    		var oView = this.getView();
-			var oTable = oView.byId("table");
-			var oCategoriesColumn = oView.byId("categories");
-
-			oTable.sort(oCategoriesColumn, this._bSortColumnDescending ? SortOrder.Descending : SortOrder.Ascending, /*extend existing sorting*/true);
-			this._bSortColumnDescending = !this._bSortColumnDescending;
-        }
         
-            /*  var sDialogTab = "filter";
+              var sDialogTab = "filter";
             if (oEvent.getSource() instanceof sap.m.Button) {
                 var sButtonId = oEvent.getSource().getId();
                 if (sButtonId.match("sort")) {
@@ -188,7 +180,7 @@ sap.ui.define([
                 }.bind(this));
             } else {
                 this.byId("viewSettingsDialog").open(sDialogTab);
-            }*/
+            }
         },
 
 		/**
@@ -300,6 +292,7 @@ sap.ui.define([
 		 * @param {sap.m.ObjectListItem} oItem selected Item
 		 * @private
 		 */
+        
         _showDetail: function (oItem) {
             var bReplace = !Device.system.phone;
             // set the layout property of FCL control to show two columns
