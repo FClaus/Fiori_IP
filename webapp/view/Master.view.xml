@@ -56,10 +56,13 @@
 					</OverflowToolbar>
 				</headerToolbar>
 				<columns>
-					<Column width="12em">
-						<Text text="Shipment" />
+					<Column width="auto">
+						<Text text="Shipment"/>
 					</Column>
-					<Column	hAlign="End">
+                    <Column hAlign="Center" width="auto">
+						<Text text="Planning Point"/>
+					</Column>
+					<Column	hAlign="Center" width="auto">
 						<Text text="Date" />
 					</Column>
 				</columns>
@@ -67,13 +70,14 @@
 					<ColumnListItem type="Navigation" press=".onSelectionChange">
 						<cells>
 							<ObjectIdentifier title="{IvTknum}" text="{IsTvtkt/Bezei} ({IsHeader/Shtyp})" />
+                            <ObjectStatus text="{IvTplst}"/>
 							<ObjectNumber
 									number="{
                                         path:'IsInplanning/PlannedDate',
                                         formatter: '.formatter.toDate' 
                                         }"
 									/> 
-						</cells>
+                        </cells>
 					</ColumnListItem>
 				</items>
 			</Table>
@@ -91,8 +95,6 @@
 				text="{masterView>/title}"
 				level="H2"/>
 		</semantic:titleHeading>
-
-
 		<semantic:content>
 			 
 			<List
@@ -152,7 +154,6 @@
                     <ObjectAttribute text="{IsTvtkt/Bezei}" />
 			        <ObjectAttribute text="({IsHeader/Shtyp})"/>
 					</ObjectListItem>
-
 				</items>
 			</List>
 		</semantic:content>
